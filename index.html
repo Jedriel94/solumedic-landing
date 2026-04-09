@@ -73,9 +73,38 @@
       box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
     }
 
-    .nav-logo img {
-      height: 55px;
+    .nav-logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+    }
+
+    .nav-logo-icon {
+      height: 50px;
+      width: 38px;
+      overflow: hidden;
+      flex-shrink: 0;
+    }
+
+    .nav-logo-icon img {
+      height: 80px;
+      width: auto;
       display: block;
+      margin-top: -2px;
+    }
+
+    .nav-logo-text {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 800;
+      font-size: 1.4rem;
+      color: var(--azul-marino);
+      line-height: 1;
+    }
+
+    .nav-logo-text span {
+      color: var(--azul-cielo);
+      text-align: left;
     }
 
     .nav-links {
@@ -1386,12 +1415,15 @@
   <!-- ==================== NAVBAR ==================== -->
   <nav class="navbar" id="navbar">
     <div class="nav-logo">
-      <img src="logo-solumedic.jpg" height="55" alt="SoluMedic" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'font-family:Montserrat,sans-serif;font-weight:800;font-size:1.4rem;color:#1B3A6B\'>Solu<span style=\'color:#29ABE2\'>Medic</span></span>'" />
+      <div class="nav-logo-icon">
+        <img src="logo-solumedic.png" alt="SoluMedic logo" />
+      </div>
+      <span class="nav-logo-text">Solu<span>Medic</span></span>
     </div>
     <ul class="nav-links" id="navLinks">
       <li><a href="#quienes-somos">Quiénes Somos</a></li>
       <li><a href="#servicios">Servicios</a></li>
-      <li><a href="#plataforma">Plataforma Digital</a></li>
+      <li><a href="#plataforma">Herramientas Digitales</a></li>
       <li><a href="#contacto" class="nav-cta">Contáctanos</a></li>
     </ul>
     <button class="nav-hamburger" id="hamburger" aria-label="Menú">
@@ -1401,7 +1433,7 @@
   <div class="nav-mobile-menu" id="mobileMenu">
     <a href="#quienes-somos">Quiénes Somos</a>
     <a href="#servicios">Servicios</a>
-    <a href="#plataforma">Plataforma Digital</a>
+    <a href="#plataforma">Herramientas Digitales</a>
     <a href="#contacto">Contáctanos</a>
   </div>
 
@@ -1544,7 +1576,7 @@
       </div>
       <div class="servicio-card">
         <i class="fas fa-chart-line"></i>
-        <h3>Plataforma Digital Propia</h3>
+        <h3>Herramientas Digitales Propia</h3>
         <p>Herramientas digitales personalizadas para equipos de ventas y administradores. Métricas en tiempo real: ventas por zona, región y estado, con inventario controlado.</p>
       </div>
       <div class="servicio-card">
@@ -1803,7 +1835,7 @@
   <footer>
     <div class="footer-grid">
       <div class="footer-brand">
-        <img src="logo-solumedic.jpg" height="50" alt="SoluMedic" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'font-family:Montserrat,sans-serif;font-weight:800;font-size:1.4rem;color:white\'>Solu<span style=\'color:#29ABE2\'>Medic</span></span>'" />
+        <img src="logo-solumedic.png" height="60" alt="SoluMedic" style="filter: brightness(0) invert(1);" />
         <p>Soluciones para tu bienestar</p>
         <div class="social-links">
           <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
