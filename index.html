@@ -187,7 +187,9 @@
 
     /* ===================== HERO ===================== */
     #hero {
-      background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-cielo) 100%);
+      background:
+        linear-gradient(135deg, rgba(27,58,107,0.82) 0%, rgba(41,171,226,0.70) 100%),
+        url('hero-bg.png') center center / cover no-repeat;
       min-height: 100vh;
       display: flex;
       align-items: center;
@@ -195,15 +197,16 @@
     }
 
     .hero-inner {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 60px;
-      align-items: center;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      max-width: 720px;
       width: 100%;
     }
 
     .hero-left {
       color: var(--blanco);
+      width: 100%;
     }
 
     .hero-tag {
@@ -278,16 +281,6 @@
       transform: translateY(-2px);
     }
 
-    .hero-right {
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
-
-    .hero-svg {
-      width: 100%;
-      max-width: 480px;
-    }
 
     /* ===================== STATS ===================== */
     #stats {
@@ -1096,20 +1089,7 @@
         display: block;
       }
 
-      /* Hero: 1 columna, SVG abajo y más pequeño */
-      .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 32px;
-        text-align: left;
-      }
-      .hero-right {
-        display: flex;
-        justify-content: center;
-      }
-      .hero-svg {
-        max-width: 300px;
-        opacity: 0.85;
-      }
+      /* Hero */
       .hero-left h1 {
         font-size: 2rem;
       }
@@ -1169,11 +1149,7 @@
 
       /* Hero */
       .hero-inner {
-        grid-template-columns: 1fr;
-        gap: 28px;
-      }
-      .hero-right {
-        display: none; /* ocultar SVG en móvil para más limpieza */
+        max-width: 100%;
       }
       .hero-left h1 {
         font-size: 1.85rem;
@@ -1450,44 +1426,6 @@
           <a href="#servicios" class="btn-primary">Conoce nuestros servicios</a>
           <a href="#contacto" class="btn-outline">Contáctanos</a>
         </div>
-      </div>
-      <div class="hero-right">
-        <svg class="hero-svg" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Líneas de conexión -->
-          <line x1="250" y1="200" x2="80"  y2="80"  stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <line x1="250" y1="200" x2="420" y2="80"  stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <line x1="250" y1="200" x2="80"  y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <line x1="250" y1="200" x2="420" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <line x1="250" y1="200" x2="250" y2="60"  stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <line x1="250" y1="200" x2="250" y2="340" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <line x1="250" y1="200" x2="100" y2="200" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <line x1="250" y1="200" x2="400" y2="200" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
-          <!-- Nodos satélite -->
-          <circle cx="80"  cy="80"  r="18" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-          <circle cx="420" cy="80"  r="18" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-          <circle cx="80"  cy="320" r="18" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-          <circle cx="420" cy="320" r="18" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
-          <circle cx="250" cy="60"  r="14" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-          <circle cx="250" cy="340" r="14" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-          <circle cx="100" cy="200" r="14" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-          <circle cx="400" cy="200" r="14" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
-          <!-- Íconos FA como texto en nodos -->
-          <text x="80"  y="85"  text-anchor="middle" font-family="FontAwesome" font-size="14" fill="rgba(255,255,255,0.8)">&#xf0f9;</text>
-          <text x="420" y="85"  text-anchor="middle" font-family="FontAwesome" font-size="14" fill="rgba(255,255,255,0.8)">&#xf0f9;</text>
-          <text x="80"  y="325" text-anchor="middle" font-family="FontAwesome" font-size="14" fill="rgba(255,255,255,0.8)">&#xf0f9;</text>
-          <text x="420" y="325" text-anchor="middle" font-family="FontAwesome" font-size="14" fill="rgba(255,255,255,0.8)">&#xf0f9;</text>
-          <!-- Nodo central principal -->
-          <circle cx="250" cy="200" r="44" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
-          <circle cx="250" cy="200" r="30" fill="rgba(255,255,255,0.25)"/>
-          <text x="250" y="208" text-anchor="middle" font-family="FontAwesome" font-size="22" fill="white">&#xf0d1;</text>
-          <!-- Puntos decorativos flotantes -->
-          <circle cx="160" cy="130" r="5" fill="rgba(255,255,255,0.3)"/>
-          <circle cx="340" cy="130" r="5" fill="rgba(255,255,255,0.3)"/>
-          <circle cx="160" cy="270" r="5" fill="rgba(255,255,255,0.3)"/>
-          <circle cx="340" cy="270" r="5" fill="rgba(255,255,255,0.3)"/>
-          <circle cx="170" cy="200" r="4" fill="rgba(255,255,255,0.2)"/>
-          <circle cx="330" cy="200" r="4" fill="rgba(255,255,255,0.2)"/>
-        </svg>
       </div>
     </div>
   </section>
