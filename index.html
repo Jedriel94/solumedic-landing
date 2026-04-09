@@ -1,0 +1,1701 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>SoluMedic — Distribución Farmacéutica Nacional</title>
+  <meta name="description" content="SoluMedic: tu aliado estratégico en distribución farmacéutica a nivel nacional. Entregas en 24-48 hrs con tecnología propia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <style>
+    /* ===================== RESET & ROOT ===================== */
+    :root {
+      --azul-marino: #1B3A6B;
+      --azul-cielo: #29ABE2;
+      --blanco: #FFFFFF;
+      --gris-claro: #F5F7FA;
+      --gris-texto: #444444;
+    }
+
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Open Sans', sans-serif;
+      color: var(--gris-texto);
+      line-height: 1.7;
+    }
+
+    h1, h2, h3 {
+      font-family: 'Montserrat', sans-serif;
+    }
+
+    p, li, td, th, label, input, textarea, span {
+      text-align: justify;
+    }
+
+    /* ===================== FADE-IN ANIMATION ===================== */
+    .fade-in {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+
+    .fade-in.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* ===================== NAVBAR ===================== */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: var(--blanco);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 8%;
+      height: 70px;
+      transition: box-shadow 0.3s ease;
+    }
+
+    .navbar.scrolled {
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.12);
+    }
+
+    .nav-logo img {
+      height: 55px;
+      display: block;
+    }
+
+    .nav-links {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      list-style: none;
+    }
+
+    .nav-links a {
+      text-decoration: none;
+      color: var(--azul-marino);
+      font-family: 'Open Sans', sans-serif;
+      font-weight: 600;
+      font-size: 0.95rem;
+      transition: color 0.2s;
+    }
+
+    .nav-links a:hover {
+      color: var(--azul-cielo);
+    }
+
+    .nav-cta {
+      background: var(--azul-cielo);
+      color: var(--blanco) !important;
+      border-radius: 25px;
+      padding: 10px 24px;
+      transition: background 0.2s, transform 0.2s !important;
+    }
+
+    .nav-cta:hover {
+      background: #1e93c8 !important;
+      transform: translateY(-1px);
+    }
+
+    .nav-hamburger {
+      display: none;
+      background: none;
+      border: none;
+      font-size: 1.5rem;
+      color: var(--azul-marino);
+      cursor: pointer;
+    }
+
+    .nav-mobile-menu {
+      display: none;
+      flex-direction: column;
+      background: var(--blanco);
+      position: absolute;
+      top: 70px;
+      left: 0;
+      right: 0;
+      padding: 20px 8%;
+      box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+      z-index: 999;
+    }
+
+    .nav-mobile-menu.open {
+      display: flex;
+    }
+
+    .nav-mobile-menu a {
+      text-decoration: none;
+      color: var(--azul-marino);
+      font-weight: 600;
+      padding: 12px 0;
+      border-bottom: 1px solid #eee;
+      transition: color 0.2s;
+    }
+
+    .nav-mobile-menu a:last-child {
+      border-bottom: none;
+    }
+
+    .nav-mobile-menu a:hover {
+      color: var(--azul-cielo);
+    }
+
+    /* ===================== HERO ===================== */
+    #hero {
+      background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-cielo) 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      padding: 80px 8%;
+    }
+
+    .hero-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center;
+      width: 100%;
+    }
+
+    .hero-left {
+      color: var(--blanco);
+    }
+
+    .hero-tag {
+      display: inline-block;
+      border: 1.5px solid rgba(255,255,255,0.7);
+      border-radius: 20px;
+      padding: 6px 18px;
+      font-size: 0.82rem;
+      letter-spacing: 0.5px;
+      margin-bottom: 24px;
+      font-weight: 600;
+    }
+
+    .hero-left h1 {
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 800;
+      line-height: 1.2;
+      margin-bottom: 24px;
+      color: var(--blanco);
+    }
+
+    .hero-left p {
+      font-size: 1.05rem;
+      line-height: 1.75;
+      margin-bottom: 36px;
+      color: rgba(255,255,255,0.9);
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    .btn-primary {
+      background: var(--blanco);
+      color: var(--azul-marino);
+      border: none;
+      border-radius: 25px;
+      padding: 14px 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.2s, box-shadow 0.2s;
+      display: inline-block;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    }
+
+    .btn-outline {
+      background: transparent;
+      color: var(--blanco);
+      border: 2px solid var(--blanco);
+      border-radius: 25px;
+      padding: 14px 30px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 0.95rem;
+      cursor: pointer;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+      display: inline-block;
+    }
+
+    .btn-outline:hover {
+      background: rgba(255,255,255,0.1);
+      transform: translateY(-2px);
+    }
+
+    .hero-right {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .hero-svg {
+      width: 100%;
+      max-width: 480px;
+    }
+
+    /* ===================== STATS ===================== */
+    #stats {
+      background: var(--azul-marino);
+      padding: 80px 8%;
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 0;
+    }
+
+    .stat-card {
+      text-align: center;
+      padding: 40px 20px;
+      border-right: 1px solid rgba(255,255,255,0.15);
+      position: relative;
+    }
+
+    .stat-card:last-child {
+      border-right: none;
+    }
+
+    .stat-card i {
+      font-size: 2rem;
+      color: var(--azul-cielo);
+      margin-bottom: 16px;
+      display: block;
+    }
+
+    .stat-number {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 3rem;
+      font-weight: 800;
+      color: var(--azul-cielo);
+      display: block;
+      line-height: 1;
+      margin-bottom: 8px;
+    }
+
+    .stat-label {
+      color: var(--blanco);
+      font-size: 0.9rem;
+      font-weight: 600;
+    }
+
+    /* ===================== QUIÉNES SOMOS ===================== */
+    #quienes-somos {
+      background: var(--gris-claro);
+      padding: 80px 8%;
+    }
+
+    .quienes-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .section-label {
+      display: inline-block;
+      background: var(--azul-cielo);
+      color: var(--blanco);
+      border-radius: 4px;
+      padding: 4px 14px;
+      font-size: 0.78rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 16px;
+    }
+
+    .quienes-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--azul-marino);
+      margin-bottom: 16px;
+    }
+
+    .title-accent {
+      width: 60px;
+      height: 4px;
+      background: var(--azul-cielo);
+      border-radius: 2px;
+      margin-bottom: 24px;
+    }
+
+    .quienes-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: var(--gris-texto);
+    }
+
+    .quienes-svg {
+      display: flex;
+      justify-content: center;
+    }
+
+    /* ===================== SERVICIOS ===================== */
+    #servicios {
+      background: var(--blanco);
+      padding: 80px 8%;
+    }
+
+    .section-header {
+      text-align: center;
+      margin-bottom: 60px;
+    }
+
+    .section-header h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--azul-marino);
+      margin-bottom: 12px;
+    }
+
+    .section-header p {
+      color: #666;
+      font-size: 1.05rem;
+      text-align: center;
+    }
+
+    .section-header .title-accent {
+      margin: 14px auto;
+    }
+
+    .servicios-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 28px;
+    }
+
+    .servicio-card {
+      background: var(--blanco);
+      border-radius: 12px;
+      padding: 32px 28px;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.07);
+      border-bottom: 3px solid var(--azul-cielo);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .servicio-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 12px 35px rgba(0,0,0,0.13);
+    }
+
+    .servicio-card i {
+      font-size: 2.2rem;
+      color: var(--azul-cielo);
+      margin-bottom: 18px;
+      display: block;
+    }
+
+    .servicio-card h3 {
+      font-size: 1.1rem;
+      font-weight: 600;
+      color: var(--azul-marino);
+      margin-bottom: 12px;
+    }
+
+    .servicio-card p {
+      font-size: 0.93rem;
+      line-height: 1.7;
+      color: #666;
+    }
+
+    /* ===================== PLATAFORMA DIGITAL ===================== */
+    #plataforma {
+      background: linear-gradient(135deg, var(--azul-marino) 0%, var(--azul-cielo) 100%);
+      padding: 80px 8%;
+      color: var(--blanco);
+    }
+
+    .plataforma-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .plataforma-text h2 {
+      font-size: clamp(1.8rem, 3vw, 2.4rem);
+      font-weight: 800;
+      color: var(--blanco);
+      margin-bottom: 16px;
+    }
+
+    .plataforma-text .title-accent {
+      background: rgba(255,255,255,0.5);
+    }
+
+    .plataforma-text p {
+      font-size: 1rem;
+      line-height: 1.8;
+      color: rgba(255,255,255,0.9);
+      margin-bottom: 30px;
+    }
+
+    .plataforma-points {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .plataforma-points li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 0.97rem;
+      color: rgba(255,255,255,0.95);
+      text-align: left;
+    }
+
+    .plataforma-points li i {
+      color: var(--blanco);
+      margin-top: 3px;
+      flex-shrink: 0;
+      font-size: 1.1rem;
+    }
+
+    /* Dashboard mockup CSS */
+    .dashboard-mockup {
+      background: #1a2740;
+      border-radius: 16px;
+      padding: 24px;
+      box-shadow: 0 24px 60px rgba(0,0,0,0.4);
+      width: 100%;
+      max-width: 440px;
+      margin: 0 auto;
+    }
+
+    .dash-topbar {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      margin-bottom: 20px;
+    }
+
+    .dash-dot {
+      width: 10px;
+      height: 10px;
+      border-radius: 50%;
+    }
+
+    .dash-dot.red   { background: #FF5F56; }
+    .dash-dot.yellow{ background: #FFBD2E; }
+    .dash-dot.green { background: #27C93F; }
+
+    .dash-title {
+      color: rgba(255,255,255,0.5);
+      font-size: 0.78rem;
+      margin-left: auto;
+      font-weight: 600;
+    }
+
+    .dash-kpis {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 10px;
+      margin-bottom: 20px;
+    }
+
+    .dash-kpi {
+      background: rgba(41,171,226,0.15);
+      border-radius: 10px;
+      padding: 14px 10px;
+      text-align: center;
+    }
+
+    .dash-kpi .kpi-value {
+      font-family: 'Montserrat', sans-serif;
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--azul-cielo);
+    }
+
+    .dash-kpi .kpi-label {
+      font-size: 0.68rem;
+      color: rgba(255,255,255,0.5);
+      margin-top: 4px;
+      text-align: center;
+    }
+
+    .dash-chart-label {
+      font-size: 0.75rem;
+      color: rgba(255,255,255,0.4);
+      margin-bottom: 10px;
+      font-weight: 600;
+    }
+
+    .dash-bars {
+      display: flex;
+      align-items: flex-end;
+      gap: 8px;
+      height: 80px;
+      margin-bottom: 16px;
+    }
+
+    .dash-bar-wrap {
+      flex: 1;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      height: 100%;
+      justify-content: flex-end;
+    }
+
+    .dash-bar {
+      width: 100%;
+      border-radius: 4px 4px 0 0;
+      background: var(--azul-cielo);
+      opacity: 0.8;
+    }
+
+    .dash-bar-wrap .bar-lbl {
+      font-size: 0.6rem;
+      color: rgba(255,255,255,0.4);
+    }
+
+    .dash-map-row {
+      display: flex;
+      gap: 10px;
+    }
+
+    .dash-map-box {
+      flex: 1;
+      background: rgba(255,255,255,0.06);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    .dash-map-box .map-lbl {
+      font-size: 0.65rem;
+      color: rgba(255,255,255,0.35);
+      font-weight: 600;
+      text-align: left;
+      margin-bottom: 8px;
+    }
+
+    .dash-mini-lines {
+      display: flex;
+      flex-direction: column;
+      gap: 5px;
+    }
+
+    .dash-mini-line {
+      height: 6px;
+      border-radius: 3px;
+    }
+
+    /* ===================== CLIENTES ===================== */
+    #clientes {
+      background: var(--gris-claro);
+      padding: 80px 8%;
+    }
+
+    .clientes-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 32px;
+      margin-top: 50px;
+    }
+
+    .cliente-card {
+      background: var(--blanco);
+      border-radius: 12px;
+      padding: 40px 28px;
+      text-align: center;
+      box-shadow: 0 4px 20px rgba(0,0,0,0.06);
+      transition: transform 0.3s, box-shadow 0.3s;
+    }
+
+    .cliente-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 14px 35px rgba(0,0,0,0.11);
+    }
+
+    .cliente-card i {
+      font-size: 2.8rem;
+      color: var(--azul-cielo);
+      margin-bottom: 20px;
+    }
+
+    .cliente-card h3 {
+      font-size: 1.1rem;
+      font-weight: 700;
+      color: var(--azul-marino);
+      margin-bottom: 12px;
+    }
+
+    .cliente-card p {
+      font-size: 0.93rem;
+      color: #666;
+      line-height: 1.7;
+    }
+
+    /* ===================== POR QUÉ ELEGIRNOS ===================== */
+    #por-que-nosotros {
+      background: var(--blanco);
+      padding: 80px 8%;
+    }
+
+    .porque-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px 48px;
+      margin-top: 50px;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+
+    .porque-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 14px;
+    }
+
+    .porque-item i {
+      color: var(--azul-cielo);
+      font-size: 1.2rem;
+      margin-top: 2px;
+      flex-shrink: 0;
+    }
+
+    .porque-item span {
+      font-size: 0.97rem;
+      color: var(--gris-texto);
+      line-height: 1.6;
+      text-align: left;
+    }
+
+    /* ===================== CONTACTO ===================== */
+    #contacto {
+      background: var(--gris-claro);
+      padding: 80px 8%;
+    }
+
+    .contacto-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 80px;
+      margin-top: 50px;
+    }
+
+    .contacto-form {
+      background: var(--blanco);
+      border-radius: 16px;
+      padding: 40px;
+      box-shadow: 0 6px 28px rgba(0,0,0,0.07);
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    .form-group label {
+      display: block;
+      font-weight: 600;
+      font-size: 0.88rem;
+      color: var(--azul-marino);
+      margin-bottom: 7px;
+      text-align: left;
+    }
+
+    .form-group input,
+    .form-group textarea {
+      width: 100%;
+      padding: 12px 16px;
+      border: 1.5px solid #dde2ea;
+      border-radius: 8px;
+      font-family: 'Open Sans', sans-serif;
+      font-size: 0.95rem;
+      color: var(--gris-texto);
+      transition: border-color 0.2s;
+      outline: none;
+      text-align: left;
+    }
+
+    .form-group input:focus,
+    .form-group textarea:focus {
+      border-color: var(--azul-cielo);
+    }
+
+    .form-group textarea {
+      resize: vertical;
+      min-height: 120px;
+    }
+
+    .form-error {
+      color: #e74c3c;
+      font-size: 0.78rem;
+      margin-top: 5px;
+      display: none;
+    }
+
+    .btn-submit {
+      width: 100%;
+      background: var(--azul-cielo);
+      color: var(--blanco);
+      border: none;
+      border-radius: 25px;
+      padding: 15px;
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .btn-submit:hover {
+      background: #1e93c8;
+      transform: translateY(-1px);
+    }
+
+    .form-success {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+    }
+
+    .form-success i {
+      font-size: 3.5rem;
+      color: var(--azul-cielo);
+      margin-bottom: 16px;
+    }
+
+    .form-success h3 {
+      font-size: 1.4rem;
+      color: var(--azul-marino);
+      margin-bottom: 10px;
+    }
+
+    .form-success p {
+      color: #666;
+      text-align: center;
+    }
+
+    .contacto-info {
+      padding-top: 20px;
+    }
+
+    .contacto-info h3 {
+      font-size: 1.3rem;
+      font-weight: 700;
+      color: var(--azul-marino);
+      margin-bottom: 10px;
+    }
+
+    .contacto-info .title-accent {
+      margin-bottom: 28px;
+    }
+
+    .info-item {
+      display: flex;
+      align-items: flex-start;
+      gap: 16px;
+      margin-bottom: 24px;
+    }
+
+    .info-icon {
+      width: 44px;
+      height: 44px;
+      background: var(--azul-cielo);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+    }
+
+    .info-icon i {
+      color: var(--blanco);
+      font-size: 1rem;
+    }
+
+    .info-text strong {
+      display: block;
+      color: var(--azul-marino);
+      font-weight: 600;
+      font-size: 0.9rem;
+      margin-bottom: 2px;
+    }
+
+    .info-text span {
+      color: #666;
+      font-size: 0.93rem;
+      text-align: left;
+    }
+
+    /* ===================== FOOTER ===================== */
+    footer {
+      background: var(--azul-marino);
+      color: var(--blanco);
+      padding: 60px 8% 30px;
+    }
+
+    .footer-grid {
+      display: grid;
+      grid-template-columns: 1.2fr 1fr 1fr;
+      gap: 48px;
+      padding-bottom: 40px;
+    }
+
+    .footer-brand img {
+      height: 50px;
+      margin-bottom: 14px;
+    }
+
+    .footer-brand p {
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      margin-bottom: 20px;
+      text-align: left;
+    }
+
+    .social-links {
+      display: flex;
+      gap: 14px;
+    }
+
+    .social-links a {
+      width: 38px;
+      height: 38px;
+      border-radius: 50%;
+      background: rgba(255,255,255,0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--blanco);
+      text-decoration: none;
+      font-size: 1rem;
+      transition: background 0.2s, transform 0.2s;
+    }
+
+    .social-links a:hover {
+      background: var(--azul-cielo);
+      transform: translateY(-2px);
+    }
+
+    .footer-col h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--blanco);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
+    }
+
+    .footer-col h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 35px;
+      height: 3px;
+      background: var(--azul-cielo);
+      border-radius: 2px;
+    }
+
+    .footer-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .footer-links a {
+      color: rgba(255,255,255,0.7);
+      text-decoration: none;
+      font-size: 0.92rem;
+      transition: color 0.2s, padding-left 0.2s;
+    }
+
+    .footer-links a:hover {
+      color: var(--azul-cielo);
+      padding-left: 6px;
+    }
+
+    .footer-contact-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 14px;
+    }
+
+    .footer-contact-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      color: rgba(255,255,255,0.7);
+      font-size: 0.9rem;
+      text-align: left;
+    }
+
+    .footer-contact-list li i {
+      color: var(--azul-cielo);
+      width: 16px;
+      margin-top: 3px;
+      flex-shrink: 0;
+    }
+
+    .footer-divider {
+      border: none;
+      border-top: 1px solid rgba(255,255,255,0.12);
+      margin: 0 0 24px;
+    }
+
+    .footer-bottom {
+      text-align: center;
+      color: rgba(255,255,255,0.5);
+      font-size: 0.85rem;
+    }
+
+    /* ===================== RESPONSIVE ===================== */
+    @media (max-width: 1024px) {
+      .hero-inner {
+        gap: 40px;
+      }
+
+      .servicios-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-card:nth-child(2) {
+        border-right: none;
+      }
+
+      .stat-card:nth-child(3) {
+        border-top: 1px solid rgba(255,255,255,0.15);
+      }
+
+      .stat-card:nth-child(4) {
+        border-top: 1px solid rgba(255,255,255,0.15);
+        border-right: none;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .footer-brand {
+        grid-column: 1 / -1;
+      }
+    }
+
+    @media (max-width: 768px) {
+      #hero,
+      #quienes-somos,
+      #servicios,
+      #plataforma,
+      #clientes,
+      #por-que-nosotros,
+      #contacto,
+      footer {
+        padding: 60px 6%;
+      }
+
+      #stats {
+        padding: 60px 6%;
+      }
+
+      .hero-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+        text-align: left;
+      }
+
+      .hero-right {
+        display: none;
+      }
+
+      .nav-links {
+        display: none;
+      }
+
+      .nav-hamburger {
+        display: block;
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .stat-card {
+        border-right: none;
+        border-bottom: 1px solid rgba(255,255,255,0.15);
+      }
+
+      .stat-card:nth-last-child(-n+2) {
+        border-bottom: none;
+      }
+
+      .quienes-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .quienes-svg {
+        display: none;
+      }
+
+      .servicios-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .plataforma-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .clientes-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .porque-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .contacto-inner {
+        grid-template-columns: 1fr;
+        gap: 40px;
+      }
+
+      .footer-grid {
+        grid-template-columns: 1fr;
+        gap: 32px;
+      }
+
+      .dashboard-mockup {
+        max-width: 100%;
+      }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- ==================== NAVBAR ==================== -->
+  <nav class="navbar" id="navbar">
+    <div class="nav-logo">
+      <img src="logo-solumedic.jpg" height="55" alt="SoluMedic" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'font-family:Montserrat,sans-serif;font-weight:800;font-size:1.4rem;color:#1B3A6B\'>Solu<span style=\'color:#29ABE2\'>Medic</span></span>'" />
+    </div>
+    <ul class="nav-links" id="navLinks">
+      <li><a href="#quienes-somos">Quiénes Somos</a></li>
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#plataforma">Plataforma Digital</a></li>
+      <li><a href="#contacto" class="nav-cta">Contáctanos</a></li>
+    </ul>
+    <button class="nav-hamburger" id="hamburger" aria-label="Menú">
+      <i class="fas fa-bars"></i>
+    </button>
+  </nav>
+  <div class="nav-mobile-menu" id="mobileMenu">
+    <a href="#quienes-somos">Quiénes Somos</a>
+    <a href="#servicios">Servicios</a>
+    <a href="#plataforma">Plataforma Digital</a>
+    <a href="#contacto">Contáctanos</a>
+  </div>
+
+  <!-- ==================== HERO ==================== -->
+  <section id="hero" class="fade-in">
+    <div class="hero-inner">
+      <div class="hero-left">
+        <span class="hero-tag">Distribución Farmacéutica Nacional</span>
+        <h1>Tu aliado estratégico en distribución farmacéutica</h1>
+        <p>Distribuimos medicamentos a toda la República Mexicana en 24 a 48 horas, respaldados por tecnología propia que mide en tiempo real cada movimiento de tus productos.</p>
+        <div class="hero-buttons">
+          <a href="#servicios" class="btn-primary">Conoce nuestros servicios</a>
+          <a href="#contacto" class="btn-outline">Contáctanos</a>
+        </div>
+      </div>
+      <div class="hero-right">
+        <svg class="hero-svg" viewBox="0 0 500 400" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Líneas de conexión -->
+          <line x1="250" y1="200" x2="80"  y2="80"  stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="250" y1="200" x2="420" y2="80"  stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="250" y1="200" x2="80"  y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="250" y1="200" x2="420" y2="320" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="250" y1="200" x2="250" y2="60"  stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="250" y1="200" x2="250" y2="340" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="250" y1="200" x2="100" y2="200" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <line x1="250" y1="200" x2="400" y2="200" stroke="rgba(255,255,255,0.25)" stroke-width="1.5" stroke-dasharray="6 4"/>
+          <!-- Nodos satélite -->
+          <circle cx="80"  cy="80"  r="18" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <circle cx="420" cy="80"  r="18" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <circle cx="80"  cy="320" r="18" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <circle cx="420" cy="320" r="18" fill="rgba(255,255,255,0.15)" stroke="rgba(255,255,255,0.5)" stroke-width="1.5"/>
+          <circle cx="250" cy="60"  r="14" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+          <circle cx="250" cy="340" r="14" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+          <circle cx="100" cy="200" r="14" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+          <circle cx="400" cy="200" r="14" fill="rgba(255,255,255,0.12)" stroke="rgba(255,255,255,0.4)" stroke-width="1.5"/>
+          <!-- Íconos FA como texto en nodos -->
+          <text x="80"  y="85"  text-anchor="middle" font-family="FontAwesome" font-size="14" fill="rgba(255,255,255,0.8)">&#xf0f9;</text>
+          <text x="420" y="85"  text-anchor="middle" font-family="FontAwesome" font-size="14" fill="rgba(255,255,255,0.8)">&#xf0f9;</text>
+          <text x="80"  y="325" text-anchor="middle" font-family="FontAwesome" font-size="14" fill="rgba(255,255,255,0.8)">&#xf0f9;</text>
+          <text x="420" y="325" text-anchor="middle" font-family="FontAwesome" font-size="14" fill="rgba(255,255,255,0.8)">&#xf0f9;</text>
+          <!-- Nodo central principal -->
+          <circle cx="250" cy="200" r="44" fill="rgba(255,255,255,0.18)" stroke="rgba(255,255,255,0.6)" stroke-width="2"/>
+          <circle cx="250" cy="200" r="30" fill="rgba(255,255,255,0.25)"/>
+          <text x="250" y="208" text-anchor="middle" font-family="FontAwesome" font-size="22" fill="white">&#xf0d1;</text>
+          <!-- Puntos decorativos flotantes -->
+          <circle cx="160" cy="130" r="5" fill="rgba(255,255,255,0.3)"/>
+          <circle cx="340" cy="130" r="5" fill="rgba(255,255,255,0.3)"/>
+          <circle cx="160" cy="270" r="5" fill="rgba(255,255,255,0.3)"/>
+          <circle cx="340" cy="270" r="5" fill="rgba(255,255,255,0.3)"/>
+          <circle cx="170" cy="200" r="4" fill="rgba(255,255,255,0.2)"/>
+          <circle cx="330" cy="200" r="4" fill="rgba(255,255,255,0.2)"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== ESTADÍSTICAS ==================== -->
+  <section id="stats" class="fade-in">
+    <div class="stats-grid">
+      <div class="stat-card">
+        <i class="fas fa-calendar-alt"></i>
+        <span class="stat-number" data-target="5">0</span>
+        <span class="stat-label">Años en el mercado</span>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-flask"></i>
+        <span class="stat-number" data-target="4">0</span>
+        <span class="stat-label">Laboratorios activos</span>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-map"></i>
+        <span class="stat-number" data-target="32">0</span>
+        <span class="stat-label">Estados con cobertura</span>
+      </div>
+      <div class="stat-card">
+        <i class="fas fa-truck-fast"></i>
+        <span class="stat-number" data-target="48">0</span>
+        <span class="stat-label">Hrs máx. de entrega</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== QUIÉNES SOMOS ==================== -->
+  <section id="quienes-somos" class="fade-in">
+    <div class="quienes-inner">
+      <div class="quienes-text">
+        <span class="section-label">Nuestra empresa</span>
+        <h2>¿Quiénes somos?</h2>
+        <div class="title-accent"></div>
+        <p>SoluMedic es una empresa mexicana con más de 5 años de experiencia especializada en la distribución de medicamentos a nivel nacional. Nos diferenciamos por implementar herramientas digitales propias y personalizadas para cada cliente, que permiten monitorear en tiempo real el desplazamiento de productos, ventas por zona, región y estado, así como el seguimiento preciso de inventarios y promociones activas. Somos el socio estratégico que los laboratorios necesitan para llegar con eficiencia y trazabilidad a hospitales, médicos y pacientes en toda la República Mexicana. Contamos con marca registrada ante el IMPI y operamos bajo las normativas sanitarias vigentes.</p>
+      </div>
+      <div class="quienes-svg">
+        <svg viewBox="0 0 420 380" width="100%" style="max-width:380px" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+          <!-- Fondo círculo decorativo -->
+          <circle cx="210" cy="190" r="170" fill="#EAF6FC" />
+          <!-- Conexiones mapa abstracto -->
+          <line x1="100" y1="120" x2="210" y2="100" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+          <line x1="210" y1="100" x2="310" y2="130" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+          <line x1="310" y1="130" x2="330" y2="240" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+          <line x1="330" y1="240" x2="230" y2="290" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+          <line x1="230" y1="290" x2="110" y2="270" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+          <line x1="110" y1="270" x2="100" y2="120" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
+          <line x1="210" y1="100" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
+          <line x1="310" y1="130" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
+          <line x1="330" y1="240" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
+          <line x1="230" y1="290" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
+          <line x1="110" y1="270" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
+          <line x1="100" y1="120" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
+          <!-- Nodos perimetrales -->
+          <circle cx="100" cy="120" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
+          <circle cx="210" cy="100" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
+          <circle cx="310" cy="130" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
+          <circle cx="330" cy="240" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
+          <circle cx="230" cy="290" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
+          <circle cx="110" cy="270" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
+          <!-- Nodo central -->
+          <circle cx="210" cy="190" r="36" fill="#1B3A6B"/>
+          <circle cx="210" cy="190" r="24" fill="#29ABE2"/>
+          <!-- Cruz médica -->
+          <rect x="204" y="178" width="12" height="24" rx="3" fill="white"/>
+          <rect x="198" y="184" width="24" height="12" rx="3" fill="white"/>
+        </svg>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== SERVICIOS ==================== -->
+  <section id="servicios" class="fade-in">
+    <div class="section-header">
+      <span class="section-label">Lo que hacemos</span>
+      <h2>Nuestros Servicios</h2>
+      <div class="title-accent"></div>
+      <p>Soluciones integrales para laboratorios farmacéuticos</p>
+    </div>
+    <div class="servicios-grid">
+      <div class="servicio-card">
+        <i class="fas fa-truck-fast"></i>
+        <h3>Distribución Nacional</h3>
+        <p>Envíos a toda la República Mexicana en 24 a 48 horas. Llegamos a hospitales, consultorios médicos y pacientes finales con control total en cada entrega.</p>
+      </div>
+      <div class="servicio-card">
+        <i class="fas fa-chart-line"></i>
+        <h3>Plataforma Digital Propia</h3>
+        <p>Herramientas digitales personalizadas para equipos de ventas y administradores. Métricas en tiempo real: ventas por zona, región y estado, con inventario controlado.</p>
+      </div>
+      <div class="servicio-card">
+        <i class="fas fa-bullhorn"></i>
+        <h3>Impulso de Marcas</h3>
+        <p>Apoyamos el lanzamiento y posicionamiento de productos farmacéuticos con seguimiento de desplazamiento en zonas específicas a través de nuestra plataforma.</p>
+      </div>
+      <div class="servicio-card">
+        <i class="fas fa-store"></i>
+        <h3>E-commerce Especializado</h3>
+        <p>Tiendas en línea cerradas y personalizadas para representantes, médicos o pacientes, adaptadas al objetivo de cada laboratorio.</p>
+      </div>
+      <div class="servicio-card">
+        <i class="fas fa-chart-pie"></i>
+        <h3>Estadísticas en Tiempo Real</h3>
+        <p>Dashboards con métricas clave: ventas, promociones activas y comportamiento de productos por zona geográfica e inventario actualizado al instante.</p>
+      </div>
+      <div class="servicio-card">
+        <i class="fas fa-map-location-dot"></i>
+        <h3>Cobertura Total</h3>
+        <p>Presencia en los 32 estados de la República Mexicana con logística eficiente y procesos alineados a las normativas sanitarias vigentes.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== PLATAFORMA DIGITAL ==================== -->
+  <section id="plataforma" class="fade-in">
+    <div class="plataforma-inner">
+      <div class="plataforma-text">
+        <span class="section-label" style="background:rgba(255,255,255,0.2);color:white;">Tecnología</span>
+        <h2>Tecnología al servicio de tu marca</h2>
+        <div class="title-accent"></div>
+        <p>Nuestra plataforma digital es una herramienta de inteligencia comercial diseñada a la medida de cada cliente. Permite a representantes de ventas y administradores visualizar en tiempo real el comportamiento de sus productos: ventas por zona, métricas de promociones, control de inventario y desplazamiento geográfico. Todo desde cualquier dispositivo.</p>
+        <ul class="plataforma-points">
+          <li><i class="fas fa-circle-check"></i><span>Métricas en tiempo real desde cualquier dispositivo</span></li>
+          <li><i class="fas fa-circle-check"></i><span>Segmentación por zona, región y estado</span></li>
+          <li><i class="fas fa-circle-check"></i><span>Inventario controlado y trazable al 100%</span></li>
+        </ul>
+      </div>
+      <div style="display:flex; justify-content:center; align-items:center;">
+        <div class="dashboard-mockup">
+          <div class="dash-topbar">
+            <div class="dash-dot red"></div>
+            <div class="dash-dot yellow"></div>
+            <div class="dash-dot green"></div>
+            <span class="dash-title">SoluMedic Dashboard</span>
+          </div>
+          <div class="dash-kpis">
+            <div class="dash-kpi">
+              <div class="kpi-value">32</div>
+              <div class="kpi-label">Estados activos</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="kpi-value">98%</div>
+              <div class="kpi-label">Entregas OK</div>
+            </div>
+            <div class="dash-kpi">
+              <div class="kpi-value">↑24</div>
+              <div class="kpi-label">Hrs entrega</div>
+            </div>
+          </div>
+          <div class="dash-chart-label">Ventas por región — últimos 6 meses</div>
+          <div class="dash-bars">
+            <div class="dash-bar-wrap">
+              <div class="dash-bar" style="height:45%"></div>
+              <span class="bar-lbl">Nov</span>
+            </div>
+            <div class="dash-bar-wrap">
+              <div class="dash-bar" style="height:62%"></div>
+              <span class="bar-lbl">Dic</span>
+            </div>
+            <div class="dash-bar-wrap">
+              <div class="dash-bar" style="height:55%"></div>
+              <span class="bar-lbl">Ene</span>
+            </div>
+            <div class="dash-bar-wrap">
+              <div class="dash-bar" style="height:78%"></div>
+              <span class="bar-lbl">Feb</span>
+            </div>
+            <div class="dash-bar-wrap">
+              <div class="dash-bar" style="height:70%"></div>
+              <span class="bar-lbl">Mar</span>
+            </div>
+            <div class="dash-bar-wrap">
+              <div class="dash-bar" style="height:92%; background:#27C93F;"></div>
+              <span class="bar-lbl">Abr</span>
+            </div>
+          </div>
+          <div class="dash-map-row">
+            <div class="dash-map-box" style="flex:2">
+              <div class="map-lbl">Cobertura geográfica</div>
+              <div class="dash-mini-lines">
+                <div class="dash-mini-line" style="background:#29ABE2;width:90%"></div>
+                <div class="dash-mini-line" style="background:#29ABE2;width:75%;opacity:0.7"></div>
+                <div class="dash-mini-line" style="background:#29ABE2;width:85%;opacity:0.5"></div>
+                <div class="dash-mini-line" style="background:#29ABE2;width:60%;opacity:0.4"></div>
+              </div>
+            </div>
+            <div class="dash-map-box" style="flex:1">
+              <div class="map-lbl">Inventario</div>
+              <div style="font-family:Montserrat,sans-serif;font-size:1.5rem;font-weight:800;color:#27C93F;text-align:center;margin-top:8px;">✓</div>
+              <div style="font-size:0.65rem;color:rgba(255,255,255,0.4);text-align:center;">Al día</div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== A QUIÉN ATENDEMOS ==================== -->
+  <section id="clientes" class="fade-in">
+    <div class="section-header">
+      <span class="section-label">Nuestros clientes</span>
+      <h2>¿A quién atendemos?</h2>
+      <div class="title-accent"></div>
+      <p>Conectamos laboratorios con toda la cadena de distribución farmacéutica</p>
+    </div>
+    <div class="clientes-grid">
+      <div class="cliente-card">
+        <i class="fas fa-hospital"></i>
+        <h3>Hospitales y Clínicas</h3>
+        <p>Surtido directo y puntual a instituciones de salud públicas y privadas en toda la República.</p>
+      </div>
+      <div class="cliente-card">
+        <i class="fas fa-user-doctor"></i>
+        <h3>Médicos y Representantes</h3>
+        <p>Herramientas digitales para que tu fuerza de ventas opere con información en tiempo real.</p>
+      </div>
+      <div class="cliente-card">
+        <i class="fas fa-people-group"></i>
+        <h3>Pacientes Finales</h3>
+        <p>Acceso directo al medicamento correcto, en el momento correcto, donde se necesite.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== POR QUÉ ELEGIRNOS ==================== -->
+  <section id="por-que-nosotros" class="fade-in">
+    <div class="section-header">
+      <span class="section-label">Ventajas</span>
+      <h2>¿Por qué elegirnos?</h2>
+      <div class="title-accent"></div>
+    </div>
+    <div class="porque-grid">
+      <div class="porque-item">
+        <i class="fas fa-circle-check"></i>
+        <span>Más de 5 años de experiencia en distribución farmacéutica</span>
+      </div>
+      <div class="porque-item">
+        <i class="fas fa-circle-check"></i>
+        <span>Plataforma digital propia y personalizable por cliente</span>
+      </div>
+      <div class="porque-item">
+        <i class="fas fa-circle-check"></i>
+        <span>Cobertura en los 32 estados de la República Mexicana</span>
+      </div>
+      <div class="porque-item">
+        <i class="fas fa-circle-check"></i>
+        <span>Entregas garantizadas en 24 a 48 horas</span>
+      </div>
+      <div class="porque-item">
+        <i class="fas fa-circle-check"></i>
+        <span>Seguimiento en tiempo real de ventas y promociones</span>
+      </div>
+      <div class="porque-item">
+        <i class="fas fa-circle-check"></i>
+        <span>E-commerce cerrado para tu fuerza de ventas o pacientes</span>
+      </div>
+      <div class="porque-item">
+        <i class="fas fa-circle-check"></i>
+        <span>Integración directa con representantes médicos y pacientes</span>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== CONTACTO ==================== -->
+  <section id="contacto" class="fade-in">
+    <div class="section-header">
+      <span class="section-label">Hablemos</span>
+      <h2>Contáctanos</h2>
+      <div class="title-accent"></div>
+      <p>Estamos listos para ser tu socio estratégico</p>
+    </div>
+    <div class="contacto-inner">
+      <div class="contacto-form">
+        <form id="contactForm" novalidate>
+          <div class="form-group">
+            <label for="nombre">Nombre completo</label>
+            <input type="text" id="nombre" name="nombre" placeholder="Ej. Juan Pérez García" />
+            <div class="form-error" id="error-nombre">Por favor ingresa tu nombre completo.</div>
+          </div>
+          <div class="form-group">
+            <label for="empresa">Empresa o Laboratorio</label>
+            <input type="text" id="empresa" name="empresa" placeholder="Ej. Laboratorios Farma S.A. de C.V." />
+            <div class="form-error" id="error-empresa">Por favor ingresa el nombre de tu empresa.</div>
+          </div>
+          <div class="form-group">
+            <label for="email">Correo electrónico</label>
+            <input type="email" id="email" name="email" placeholder="Ej. contacto@laboratorio.com" />
+            <div class="form-error" id="error-email">Por favor ingresa un correo electrónico válido.</div>
+          </div>
+          <div class="form-group">
+            <label for="telefono">Teléfono</label>
+            <input type="tel" id="telefono" name="telefono" placeholder="Ej. +52 55 1234 5678" />
+            <div class="form-error" id="error-telefono">Por favor ingresa tu número de teléfono.</div>
+          </div>
+          <div class="form-group">
+            <label for="mensaje">Mensaje</label>
+            <textarea id="mensaje" name="mensaje" rows="5" placeholder="Cuéntanos cómo podemos ayudarte..."></textarea>
+            <div class="form-error" id="error-mensaje">Por favor escribe tu mensaje.</div>
+          </div>
+          <button type="submit" class="btn-submit">Enviar mensaje</button>
+        </form>
+        <div class="form-success" id="formSuccess">
+          <i class="fas fa-circle-check"></i>
+          <h3>¡Gracias!</h3>
+          <p>Nos pondremos en contacto pronto.</p>
+        </div>
+      </div>
+      <div class="contacto-info">
+        <h3>Información de contacto</h3>
+        <div class="title-accent"></div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-phone"></i></div>
+          <div class="info-text">
+            <strong>Teléfono</strong>
+            <span>[TELÉFONO PENDIENTE]</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-envelope"></i></div>
+          <div class="info-text">
+            <strong>Correo electrónico</strong>
+            <span>[EMAIL PENDIENTE]</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-location-dot"></i></div>
+          <div class="info-text">
+            <strong>Ubicación</strong>
+            <span>Ciudad de México, México</span>
+          </div>
+        </div>
+        <div class="info-item">
+          <div class="info-icon"><i class="fas fa-clock"></i></div>
+          <div class="info-text">
+            <strong>Horario de atención</strong>
+            <span>Lunes a Viernes 9:00 – 18:00 hrs</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ==================== FOOTER ==================== -->
+  <footer>
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <img src="logo-solumedic.jpg" height="50" alt="SoluMedic" onerror="this.style.display='none'; this.parentNode.innerHTML='<span style=\'font-family:Montserrat,sans-serif;font-weight:800;font-size:1.4rem;color:white\'>Solu<span style=\'color:#29ABE2\'>Medic</span></span>'" />
+        <p>Soluciones para tu bienestar</p>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
+      </div>
+      <div class="footer-col">
+        <h4>Enlaces rápidos</h4>
+        <ul class="footer-links">
+          <li><a href="#quienes-somos">Quiénes somos</a></li>
+          <li><a href="#servicios">Servicios</a></li>
+          <li><a href="#plataforma">Plataforma</a></li>
+          <li><a href="#contacto">Contacto</a></li>
+        </ul>
+      </div>
+      <div class="footer-col">
+        <h4>Contacto</h4>
+        <ul class="footer-contact-list">
+          <li><i class="fas fa-phone"></i><span>[TELÉFONO PENDIENTE]</span></li>
+          <li><i class="fas fa-envelope"></i><span>[EMAIL PENDIENTE]</span></li>
+          <li><i class="fas fa-location-dot"></i><span>Ciudad de México, México</span></li>
+        </ul>
+      </div>
+    </div>
+    <hr class="footer-divider" />
+    <p class="footer-bottom">© 2025 SoluMedic. Todos los derechos reservados. Marca registrada ante el IMPI.</p>
+  </footer>
+
+  <!-- ==================== JAVASCRIPT ==================== -->
+  <script>
+    // 1. NAVBAR SCROLL — sombra al hacer scroll > 50px
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', function () {
+      if (window.scrollY > 50) {
+        navbar.classList.add('scrolled');
+      } else {
+        navbar.classList.remove('scrolled');
+      }
+    });
+
+    // 2. SMOOTH SCROLL — links con href #...
+    document.querySelectorAll('a[href^="#"]').forEach(function (anchor) {
+      anchor.addEventListener('click', function (e) {
+        const target = document.querySelector(this.getAttribute('href'));
+        if (target) {
+          e.preventDefault();
+          const navH = navbar.offsetHeight;
+          const targetY = target.getBoundingClientRect().top + window.scrollY - navH;
+          window.scrollTo({ top: targetY, behavior: 'smooth' });
+        }
+      });
+    });
+
+    // 3. INTERSECTION OBSERVER — fade-in al entrar al viewport
+    const fadeEls = document.querySelectorAll('.fade-in');
+    const fadeObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          entry.target.classList.add('visible');
+          fadeObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.12 });
+
+    fadeEls.forEach(function (el) {
+      fadeObserver.observe(el);
+    });
+
+    // 4. CONTADORES ANIMADOS en sección stats
+    var countersStarted = false;
+
+    function animateCounters() {
+      if (countersStarted) return;
+      countersStarted = true;
+      var counters = document.querySelectorAll('.stat-number[data-target]');
+      counters.forEach(function (counter) {
+        var target = parseInt(counter.getAttribute('data-target'), 10);
+        var start = 0;
+        var duration = 2000;
+        var startTime = null;
+
+        function step(timestamp) {
+          if (!startTime) startTime = timestamp;
+          var elapsed = timestamp - startTime;
+          var progress = Math.min(elapsed / duration, 1);
+          // Easing easeOutExpo
+          var eased = progress === 1 ? 1 : 1 - Math.pow(2, -10 * progress);
+          counter.textContent = Math.floor(eased * target);
+          if (progress < 1) {
+            requestAnimationFrame(step);
+          } else {
+            counter.textContent = target;
+          }
+        }
+        requestAnimationFrame(step);
+      });
+    }
+
+    var statsSection = document.getElementById('stats');
+    var statsObserver = new IntersectionObserver(function (entries) {
+      entries.forEach(function (entry) {
+        if (entry.isIntersecting) {
+          animateCounters();
+          statsObserver.unobserve(entry.target);
+        }
+      });
+    }, { threshold: 0.3 });
+    statsObserver.observe(statsSection);
+
+    // 5. MENÚ HAMBURGUESA MÓVIL
+    var hamburger = document.getElementById('hamburger');
+    var mobileMenu = document.getElementById('mobileMenu');
+
+    hamburger.addEventListener('click', function () {
+      mobileMenu.classList.toggle('open');
+    });
+
+    mobileMenu.querySelectorAll('a').forEach(function (link) {
+      link.addEventListener('click', function () {
+        mobileMenu.classList.remove('open');
+      });
+    });
+
+    // Cerrar menú al hacer clic fuera
+    document.addEventListener('click', function (e) {
+      if (!navbar.contains(e.target) && !mobileMenu.contains(e.target)) {
+        mobileMenu.classList.remove('open');
+      }
+    });
+
+    // 6. VALIDACIÓN DE FORMULARIO
+    var form = document.getElementById('contactForm');
+    var formSuccess = document.getElementById('formSuccess');
+
+    function showError(id, show) {
+      var el = document.getElementById('error-' + id);
+      if (el) el.style.display = show ? 'block' : 'none';
+    }
+
+    function validateEmail(email) {
+      return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
+    }
+
+    form.addEventListener('submit', function (e) {
+      e.preventDefault();
+      var nombre   = document.getElementById('nombre').value.trim();
+      var empresa  = document.getElementById('empresa').value.trim();
+      var email    = document.getElementById('email').value.trim();
+      var telefono = document.getElementById('telefono').value.trim();
+      var mensaje  = document.getElementById('mensaje').value.trim();
+
+      var valid = true;
+
+      if (!nombre)   { showError('nombre',   true); valid = false; } else { showError('nombre',   false); }
+      if (!empresa)  { showError('empresa',  true); valid = false; } else { showError('empresa',  false); }
+      if (!email || !validateEmail(email)) { showError('email', true); valid = false; } else { showError('email', false); }
+      if (!telefono) { showError('telefono', true); valid = false; } else { showError('telefono', false); }
+      if (!mensaje)  { showError('mensaje',  true); valid = false; } else { showError('mensaje',  false); }
+
+      if (valid) {
+        form.style.display = 'none';
+        formSuccess.style.display = 'block';
+      }
+    });
+
+    // Ocultar error al escribir
+    ['nombre','empresa','email','telefono','mensaje'].forEach(function(id) {
+      var el = document.getElementById(id);
+      if (el) {
+        el.addEventListener('input', function() { showError(id, false); });
+      }
+    });
+  </script>
+</body>
+</html>
