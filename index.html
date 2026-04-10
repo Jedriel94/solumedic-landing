@@ -892,21 +892,30 @@
 
     .footer-grid {
       display: grid;
-      grid-template-columns: 1.2fr 1fr 1fr;
+      grid-template-columns: repeat(3, 1fr);
       gap: 48px;
       padding-bottom: 40px;
     }
 
-    .footer-brand img {
-      height: 50px;
-      margin-bottom: 14px;
+    .footer-brand h4 {
+      font-family: 'Montserrat', sans-serif;
+      font-weight: 700;
+      font-size: 1rem;
+      color: var(--blanco);
+      margin-bottom: 20px;
+      position: relative;
+      padding-bottom: 10px;
     }
 
-    .footer-brand p {
-      color: rgba(255,255,255,0.7);
-      font-size: 0.9rem;
-      margin-bottom: 20px;
-      text-align: left;
+    .footer-brand h4::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 35px;
+      height: 3px;
+      background: var(--azul-cielo);
+      border-radius: 2px;
     }
 
     .social-links {
@@ -1077,13 +1086,10 @@
         padding: 32px;
       }
 
-      /* Footer: brand full-width, 2 columnas abajo */
+      /* Footer: 2 columnas + redes en tercera */
       .footer-grid {
         grid-template-columns: 1fr 1fr;
         gap: 36px;
-      }
-      .footer-brand {
-        grid-column: 1 / -1;
       }
     }
 
@@ -1260,9 +1266,6 @@
       .footer-grid {
         grid-template-columns: 1fr;
         gap: 28px;
-      }
-      .footer-brand {
-        grid-column: auto;
       }
     }
 
@@ -1753,15 +1756,6 @@
   <!-- ==================== FOOTER ==================== -->
   <footer>
     <div class="footer-grid">
-      <div class="footer-brand">
-        <img src="logo-solumedic.png" height="60" alt="SoluMedic" style="filter: brightness(0) invert(1);" />
-        <p>Soluciones para tu bienestar</p>
-        <div class="social-links">
-          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
-          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
-        </div>
-      </div>
       <div class="footer-col">
         <h4>Enlaces rápidos</h4>
         <ul class="footer-links">
@@ -1778,6 +1772,14 @@
           <li><i class="fas fa-envelope"></i><span>contacto@solumedic.mx</span></li>
           <li><i class="fas fa-location-dot"></i><span>Ciudad de México, México</span></li>
         </ul>
+      </div>
+      <div class="footer-brand">
+        <h4>Síguenos</h4>
+        <div class="social-links">
+          <a href="#" aria-label="Facebook"><i class="fab fa-facebook-f"></i></a>
+          <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+          <a href="#" aria-label="LinkedIn"><i class="fab fa-linkedin-in"></i></a>
+        </div>
       </div>
     </div>
     <hr class="footer-divider" />
