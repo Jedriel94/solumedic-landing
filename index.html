@@ -9,6 +9,8 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@600;700;800&family=Open+Sans:wght@400;600&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css" />
+  <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
+  <script>emailjs.init('yESl5gSQ7i5LpnC2i');</script>
   <style>
     /* ===================== RESET & ROOT ===================== */
     :root {
@@ -1888,9 +1890,10 @@
       }
     });
 
-    // 6. VALIDACIÓN DE FORMULARIO
+    // 6. VALIDACIÓN Y ENVÍO DE FORMULARIO CON EMAILJS
     var form = document.getElementById('contactForm');
     var formSuccess = document.getElementById('formSuccess');
+    var btnSubmit = form.querySelector('.btn-submit');
 
     function showError(id, show) {
       var el = document.getElementById('error-' + id);
@@ -1910,17 +1913,36 @@
       var mensaje  = document.getElementById('mensaje').value.trim();
 
       var valid = true;
+      if (!nombre)                          { showError('nombre',   true);  valid = false; } else { showError('nombre',   false); }
+      if (!empresa)                         { showError('empresa',  true);  valid = false; } else { showError('empresa',  false); }
+      if (!email || !validateEmail(email))  { showError('email',    true);  valid = false; } else { showError('email',    false); }
+      if (!telefono)                        { showError('telefono', true);  valid = false; } else { showError('telefono', false); }
+      if (!mensaje)                         { showError('mensaje',  true);  valid = false; } else { showError('mensaje',  false); }
 
-      if (!nombre)   { showError('nombre',   true); valid = false; } else { showError('nombre',   false); }
-      if (!empresa)  { showError('empresa',  true); valid = false; } else { showError('empresa',  false); }
-      if (!email || !validateEmail(email)) { showError('email', true); valid = false; } else { showError('email', false); }
-      if (!telefono) { showError('telefono', true); valid = false; } else { showError('telefono', false); }
-      if (!mensaje)  { showError('mensaje',  true); valid = false; } else { showError('mensaje',  false); }
+      if (!valid) return;
 
-      if (valid) {
-        form.style.display = 'none';
-        formSuccess.style.display = 'block';
-      }
+      // Deshabilitar botón mientras envía
+      btnSubmit.disabled = true;
+      btnSubmit.textContent = 'Enviando...';
+
+      var templateParams = {
+        from_name:  nombre,
+        empresa:    empresa,
+        from_email: email,
+        telefono:   telefono,
+        mensaje:    mensaje
+      };
+
+      emailjs.send('service_177rvra', 'template_em0zst7', templateParams)
+        .then(function () {
+          form.style.display = 'none';
+          formSuccess.style.display = 'block';
+        }, function (error) {
+          btnSubmit.disabled = false;
+          btnSubmit.textContent = 'Enviar mensaje';
+          alert('Hubo un error al enviar. Por favor intenta de nuevo o escríbenos a contacto@solumedic.mx');
+          console.error('EmailJS error:', error);
+        });
     });
 
     // Ocultar error al escribir
