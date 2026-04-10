@@ -376,9 +376,17 @@
       color: var(--gris-texto);
     }
 
-    .quienes-svg {
+    .quienes-img {
       display: flex;
       justify-content: center;
+      align-items: center;
+    }
+
+    .quienes-img img {
+      width: 100%;
+      max-width: 420px;
+      object-fit: contain;
+      display: block;
     }
 
     /* ===================== SERVICIOS ===================== */
@@ -1099,12 +1107,12 @@
         grid-template-columns: 1fr;
         gap: 36px;
       }
-      .quienes-svg {
+      .quienes-img {
         display: flex;
         justify-content: center;
       }
-      .quienes-svg svg {
-        max-width: 280px;
+      .quienes-img img {
+        max-width: 300px;
       }
 
       /* Clientes: 2 columnas en tablet portrait */
@@ -1189,7 +1197,7 @@
         grid-template-columns: 1fr;
         gap: 32px;
       }
-      .quienes-svg {
+      .quienes-img {
         display: none;
       }
       .quienes-text h2 {
@@ -1465,37 +1473,8 @@
         <div class="title-accent"></div>
         <p>SoluMedic es una empresa mexicana con más de 5 años de experiencia especializada en la distribución de medicamentos a nivel nacional. Nos diferenciamos por implementar herramientas digitales propias y personalizadas para cada cliente, que permiten monitorear en tiempo real el desplazamiento de productos, ventas por zona, región y estado, así como el seguimiento preciso de inventarios y promociones activas. Somos el socio estratégico que los laboratorios necesitan para llegar con eficiencia y trazabilidad a hospitales, médicos y pacientes en toda la República Mexicana.</p>
       </div>
-      <div class="quienes-svg">
-        <svg viewBox="0 0 420 380" width="100%" style="max-width:380px" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
-          <!-- Fondo círculo decorativo -->
-          <circle cx="210" cy="190" r="170" fill="#EAF6FC" />
-          <!-- Conexiones mapa abstracto -->
-          <line x1="100" y1="120" x2="210" y2="100" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
-          <line x1="210" y1="100" x2="310" y2="130" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
-          <line x1="310" y1="130" x2="330" y2="240" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
-          <line x1="330" y1="240" x2="230" y2="290" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
-          <line x1="230" y1="290" x2="110" y2="270" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
-          <line x1="110" y1="270" x2="100" y2="120" stroke="#29ABE2" stroke-width="1.5" stroke-dasharray="5 3" opacity="0.6"/>
-          <line x1="210" y1="100" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
-          <line x1="310" y1="130" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
-          <line x1="330" y1="240" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
-          <line x1="230" y1="290" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
-          <line x1="110" y1="270" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
-          <line x1="100" y1="120" x2="210" y2="190" stroke="#1B3A6B" stroke-width="1.5" opacity="0.35"/>
-          <!-- Nodos perimetrales -->
-          <circle cx="100" cy="120" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
-          <circle cx="210" cy="100" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
-          <circle cx="310" cy="130" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
-          <circle cx="330" cy="240" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
-          <circle cx="230" cy="290" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
-          <circle cx="110" cy="270" r="14" fill="white" stroke="#29ABE2" stroke-width="2"/>
-          <!-- Nodo central -->
-          <circle cx="210" cy="190" r="36" fill="#1B3A6B"/>
-          <circle cx="210" cy="190" r="24" fill="#29ABE2"/>
-          <!-- Cruz médica -->
-          <rect x="204" y="178" width="12" height="24" rx="3" fill="white"/>
-          <rect x="198" y="184" width="24" height="12" rx="3" fill="white"/>
-        </svg>
+      <div class="quienes-img">
+        <img src="quienes-img.png" alt="Atención SoluMedic" />
       </div>
     </div>
   </section>
